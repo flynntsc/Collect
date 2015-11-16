@@ -22,6 +22,7 @@
 ### Jquery
 * [中文API](http://www.jquery123.com/)
 * [手册](http://hemin.cn/jq/)
+* [源码视频](http://www.imooc.com/space/teacher/id/290139)
 * [源码学习](https://github.com/MeCKodo/forchange)
 
 
