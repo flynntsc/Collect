@@ -25,5 +25,13 @@
 * [源码视频](http://www.imooc.com/space/teacher/id/290139)
 * [源码学习](https://github.com/MeCKodo/forchange)
 
+### Sublime Text
+
+* [Package Control](https://packagecontrol.io/installation)
+
+* [Emmet](http://emmet.io/)
+
+
+
 
 
