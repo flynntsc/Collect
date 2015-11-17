@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="layup.css">
+	<script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+	<div class="row" style="margin:200px auto;">
+		<div class="col-sm-6 col-sm-offset-1">
+			<a class="btn btn-primary btn-block" id="j-btn">运行</a>
+		</div>
+	</div>
+
+
+   <!-- 搜索弹出框 -->
+   <div class="g-layer" id="j-laybank">
+        <div class="g-laybg" data-layfn="hide"></div>
+        <div class="g-laybd">
+        	<div class="row" style="margin-bottom:200px;">
+        		<div class="col-sm-6">
+        			<button class="form-control" data-layfn="hide">点我关闭</button>
+        		</div>
+        	</div>
+        </div>
+   </div>
+
+<!-- JS -->
+<script src="layup.js"></script>
+<script>
+	var layup = new Layup('j-laybank');
+	$('#j-btn').on('click',function() {
+		layup.show();
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+
+.g-laybd,.g-laybg {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0
+}
+.g-laybg {
+    top: 0;
+    z-index: 10;
+    -webkit-transform: translate(0,-100%);
+    transform: translate(0,-100%);
+    transition: -webkit-transform .1s;
+    transition: transform .1s;
+    transition: transform .1s,-webkit-transform .1s;
+    background-color: rgba(0,0,0,.5)
+}
+
+.g-laybd {
+    z-index: 11;
+    -webkit-transform: translate(0,100%);
+    transform: translate(0,100%);
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s,-webkit-transform .3s;
+    background-color: #fff
+}
+
+.g-layer.z-crt .g-laybd,.g-layer.z-crt .g-laybg {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0)
+}
