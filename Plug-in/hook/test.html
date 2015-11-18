@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>PC模拟拉动刷新</title>
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link rel="stylesheet" href="m.min.css">
+</head>
+<body class="g-bg">
+    <!-- 头部 -->
+    <!-- <header class="g-hd">
+        <div class="m-head">
+            <div class="tt">PC模拟拉动刷新</div>
+            <a class="lt" onclick="window.history.back(-1)">
+                <em class="s-sm"><i class="icono-caretLeft"></i></em>
+            </a>
+            <a class="lr" id="j-fclsch">
+                <em class="s-xs">
+                    <i class="icono-search"></i>
+                </em>
+            </a>
+        </div>
+    </header> -->
+
+    <!-- 主体 -->
+    <div class="g-bd-2" id="wrap" data-page="1">
+        <div class="m-cell">
+            <div class="m-cellbd">
+                <div class="tr">
+                    <div class="bd">油卡总数</div>
+                    <div class="ft">41</div>
+                </div>
+            </div>
+            <div class="m-cellbd">
+                <div class="tr">
+                    <div class="bd">油卡总余额</div>
+                    <div class="ft">￥ 1312313</div>
+                </div>
+            </div>
+        </div>
+        <div class="m-cell1">
+            <div class="m-cellbd">
+                <div class="tr">
+                    <div class="bd">123123132</div>
+                    <div class="ft">2014-12-12</div>
+                </div>
+                <div class="tr">
+                    <div class="bd">闽D234</div>
+                    <div class="ft">￥34340.</div>
+                </div>
+            </div>
+            <div class="m-cellbd">
+                <div class="tr">
+                    <div class="bd">123123132</div>
+                    <div class="ft">2014-12-12</div>
+                </div>
+                <div class="tr">
+                    <div class="bd">闽D234</div>
+                    <div class="ft">￥34340.</div>
+                </div>
+            </div>
+            <div class="m-cellbd">
+                <div class="tr">
+                    <div class="bd">123123132</div>
+                    <div class="ft">2014-12-12</div>
+                </div>
+                <div class="tr">
+                    <div class="bd">闽D234</div>
+                    <div class="ft">￥34340.</div>
+                </div>
+            </div>
+            <div class="m-cellbd">
+                <div class="tr">
+                    <div class="bd">123123132</div>
+                    <div class="ft">2014-12-12</div>
+                </div>
+                <div class="tr">
+                    <div class="bd">闽D234</div>
+                    <div class="ft">￥34340.</div>
+                </div>
+            </div>
+            <div class="m-cellbd">
+                <div class="tr">
+                    <div class="bd">123123132</div>
+                    <div class="ft">2014-12-12</div>
+                </div>
+                <div class="tr">
+                    <div class="bd">闽D234</div>
+                    <div class="ft">￥34340.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+<script>
+$(function() {
+    function Hook(id) {
+        this.wrap = $('#'+id);
+        this.scroll = this.wrap.wrapInner('<div id="hookScroll" />');
+        this.loadStyle = 'height:40px;line-height:40px;margin-bottom:20px;text-align:center;color:#333;';
+        this.loading = '<div class="hookLoading" style="'+ this.loadStyle +'">松开加载更多...</div>';
+        this.ifLoad = true;
+        this.minMoveTime = 50; // 最小移动时间
+        this.minMovePx = 20; // 最小移动距离
+        // this.timeStart = 0; // 移动开始时间
+        // this.timeEnd = 0; // 移动结束时间
+        // this.posStart = 0; // 移动开始坐标
+        // this.posEnd = 0; // 移动结束坐标
+    }
+    // 滚动条高度
+    Hook.prototype.scrollHeight = function() {
+        return this.scroll.outerHeight() - this.wrap.outerHeight();
+    };
+    // 移动动作消耗时间
+    Hook.prototype.moveTime = function() {
+        return this.timeEnd - this.timeStart;
+    };
+    // 移动距离
+    Hook.prototype.movePx = function() {
+        return this.posStart - this.posEnd;
+    };
+    // 触碰到时
+    Hook.prototype.onTouch = function() {};
+    // 移动时
+    Hook.prototype.onMove = function() {};
+    // 移动到顶触发
+    Hook.prototype.onTop = function() {};
+    // 关闭加载事件
+    Hook.prototype.offLoad = function() {
+        this.loading = this.loading = '<div class="hookLoading" style="'+ this.loadStyle +'">没有更多内容了</div>';
+        this.ifLoad = false;
+    };
+    Hook.prototype.int = function() {
+        var self = this;
+        this.wrap.on('touchstart',function(e) {
+            self.onTouch();
+            self.timeStart = e.timeStamp;
+            self.posStart = e.originalEvent.changedTouches[0].clientY;
+            self.scroll.append(self.loading);
+        });
+        this.wrap.on('touchmove',function(e) {
+            self.onMove();
+            e.stopPropagation();
+        });
+        this.wrap.on('touchend',function(e) {
+            self.timeEnd = e.timeStamp;
+            self.posEnd = e.originalEvent.changedTouches[0].clientY;
+            self.scroll.find('.hookLoading').remove();
+            if(self.ifLoad && self.movePx() > self.minMovePx && self.moveTime() > self.minMoveTime && self.wrap.scrollTop() >= self.scrollHeight() - 2) {
+                self.onTop();
+            }
+        });
+        return this;
+    }
+
+    var myhook = new Hook('wrap');
+    // 初始化并定义移动时判断是否还有可加载内容
+    myhook.int().onTop = function() {
+        var page = this.wrap.data('page'),
+            page =+ 1;
+        var instr = '<div class="m-cell"><div class="m-cellbd"><div class="tr"><div class="bd">当前页数'+ page +'</div><div class="ft">'+ page +'</div></div></div><div class="m-cellbd"><div class="tr"><div class="bd">'+ page +'</div><div class="ft"> '+ page +'</div></div></div></div>';
+        this.scroll.append(instr);
+
+        this.offLoad(); // 让下次开始不可加载
+    };
+});
+</script>
+</body>
+</html>
