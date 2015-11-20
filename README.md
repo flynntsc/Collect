@@ -25,6 +25,13 @@
 * [源码视频](http://www.imooc.com/space/teacher/id/290139)
 * [源码学习](https://github.com/MeCKodo/forchange)
 
+### ECMAScript 6
+
+* [ECMAScript 6入门](http://es6.ruanyifeng.com/)
+* [深入解析 ES6](http://bubkoo.com/2015/06/14/es6-in-depth-an-introduction/)
+* [给 JavaScript 初心者的 ES2015 实战](http://gank.io/post/564151c1f1df1210001c9161)
+* 
+
 ### Sublime Text
 
 * [Package Control](https://packagecontrol.io/installation)
