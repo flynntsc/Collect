@@ -35,7 +35,6 @@
 ### Sublime Text
 
 * [Package Control](https://packagecontrol.io/installation)
-
 * [Emmet](http://emmet.io/)
 
 
