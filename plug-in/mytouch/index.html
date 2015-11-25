@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>touch测试</title>
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+</head><body>
+<style>
+	*{margin: 0;padding: 0;}
+	#test{
+		height: 320px;
+		background-color: #666;
+	}
+</style>
+	<div id="test"></div>
+	<div id="t1"></div>
+	<div id="t2"></div>
+	<div id="t3"></div>
+
+<script>
+	'use strict';
+
+	var test = document.querySelector('#test'),
+		txt = document.querySelector('#txt');
+	test.addEventListener('touchstart',touchFn);
+	test.addEventListener('touchmove',touchFn);
+	test.addEventListener('touchend',touchFn);
+
+	// Fn
+	function touchFn(ev) {
+		if(ev.type === 'touchstart') {
+			document.querySelector('#t1').innerHTML = ev.timeStamp;
+		}else if(ev.type === 'touchmove') {
+			document.querySelector('#t2').innerHTML = ev.timeStamp;
+		}else if(ev.type === 'touchend') {
+			document.querySelector('#t3').innerHTML = ev.timeStamp;
+		}
+	}
+
+	function inheritPrototype(sub,sup) {
+		var prototype = Object(sup.prototype);
+		prototype.constructor = sub;
+		sub.prototype = prototype;
+	}
+	function Sup(name) {
+		this.name = name;
+		this.color = ['a','b'];
+	}
+	Sup.prototype.sayName = function() {
+		console.info(this.name);
+	}
+	function Sub(name,age) {
+		Sup.call(this,name);
+		this.age = age;
+	}
+	inheritPrototype(Sub,Sup);
+	Sub.prototype.sayAge = function() {
+		console.info(this.age);
+	}
+	var x = new Sub('flyn','29');
+	// debugger;
+</script>
+</body>
+</html>
