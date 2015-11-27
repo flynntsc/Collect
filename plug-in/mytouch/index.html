@@ -32,12 +32,13 @@
 
 	// Fn
 	function touchFn(ev) {
+		var time = (new Date()).getTime();
 		if(ev.type === 'touchstart') {
-			document.querySelector('#t1').innerHTML = ev.timeStamp;
+			document.querySelector('#t1').innerHTML = '时间：'+time;
 		}else if(ev.type === 'touchmove') {
-			document.querySelector('#t2').innerHTML = ev.timeStamp;
+			document.querySelector('#t2').innerHTML = '时间：'+time;
 		}else if(ev.type === 'touchend') {
-			document.querySelector('#t3').innerHTML = ev.timeStamp;
+			document.querySelector('#t3').innerHTML = '时间：'+time;
 		}
 	}
 
@@ -62,7 +63,23 @@
 		console.info(this.age);
 	}
 	var x = new Sub('flyn','29');
+	//
+	function Par(age) {
+		this.name = ['a','b','c'];
+		this.age = age;
+	}
+	Par.prototype.getAge = function() {
+		console.info(this.age);
+	}
+	function Child(age) {
+		Par.call(this,age);
+	}
+	Child.prototype = new Par();
+	var test = new Child(21);
+
 	// debugger;
+
+
 </script>
 </body>
 </html>
