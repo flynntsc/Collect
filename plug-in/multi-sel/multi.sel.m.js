@@ -31,6 +31,12 @@ MultiSel.prototype.int = function() {
 		saveVal(opt,opl,ipt);
 	},false);
 }
+MultiSel.prototype.refresh = function() {
+	var opt = this.sel.options,
+		opl = opt.length,
+		ipt = this.sel.nextSibling;
+	saveVal(opt,opl,ipt);
+}
 MultiSel.prototype.addClass = function(cla) {
 	this.sel.nextSibling.setAttribute('class',cla);
 }
