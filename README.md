@@ -35,7 +35,10 @@
 
 * [Package Control](https://packagecontrol.io/installation)
 * [Emmet](http://emmet.io/)
-
+* [SublimeLinter](https://packagecontrol.io/packages/SublimeLinter)
+  * [Sublime​Linter-contrib-eslint](https://packagecontrol.io/packages/SublimeLinter-contrib-eslint) + [ESLint](https://www.npmjs.com/package/eslint)
+  * [SublimeLinter-csslint](https://packagecontrol.io/packages/SublimeLinter-csslint) + [csshint](https://www.npmjs.com/package/csshint)
+  
 
 
 
