@@ -22,11 +22,8 @@ Layup.prototype.close = function() {
 // 对应data-layfn触发点击事件
 Layup.prototype.hideFn = function() {
 	var self = this;
-	this.bd.on('click','[data-layfn]',function() {
-		var data = $(this).data('layfn');
-		if(data === 'hide') {
-			self.close();
-		}
+	this.bd.on('click','[data-layfn="hide"]',function() {
+		self.close();
 	})
 };
 
