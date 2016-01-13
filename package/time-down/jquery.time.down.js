@@ -7,6 +7,7 @@ function DownTime(el) {
 		that.arr[i+'h'] = that.arr[i+'bd'].find('.j-h');
 		that.arr[i+'m'] = that.arr[i+'bd'].find('.j-m');
 		that.arr[i+'s'] = that.arr[i+'bd'].find('.j-s');
+		that.arr[i+'x'] = that.arr[i+'bd'].find('.j-x');
 		that.toHms(that.arr[i+'dt'],i);
 	})
 }
@@ -25,17 +26,21 @@ DownTime.prototype = {
 		var h = Math.floor(time / 3600000);
 		var m = Math.floor((time - h * 3600000)/60/1000);
 		var s = Math.floor((time - h * 3600000)/1000%60);
+		var x = (time - h * 3600000)%1000/10
+		// console.info(x);
 		this.arr[i+'h'].html(this.dbNum(h));
 		this.arr[i+'m'].html(this.dbNum(m));
 		this.arr[i+'s'].html(this.dbNum(s));
+		this.arr[i+'x'].html(this.dbNum(x));
 		this.down(time,i);
 	},
 	down: function(value,i) {
 		var self = this;
 		if(value > 0) {
 			var downFn = setTimeout(function() {
-				self.toHms(value - 1000,i);
-			},1000)
+				self.toHms(value - 10,i);
+			},10)
+			// 这10的间隔？？！！！
 		}else{
 			clearTimeout(downFn);
 			self.onEnd();
