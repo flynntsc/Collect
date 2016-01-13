@@ -26,7 +26,7 @@ DownTime.prototype = {
 		var h = Math.floor(time / 3600000);
 		var m = Math.floor((time - h * 3600000)/60/1000);
 		var s = Math.floor((time - h * 3600000)/1000%60);
-		var x = (time - h * 3600000)%1000/10
+		var x = Math.floor((time - h * 3600000)%1000/10);
 		// console.info(x);
 		this.arr[i+'h'].html(this.dbNum(h));
 		this.arr[i+'m'].html(this.dbNum(m));
