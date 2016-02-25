@@ -1,0 +1,58 @@
+
+// 模拟密码输入框
+.m-ipw{
+    box-sizing: content-box;
+    width:180px;
+    cursor: text;
+    background: #fff;
+    outline: none;
+    position: relative;
+    padding: 9px 0;
+    height: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+
+    .it{
+        box-sizing: content-box;
+        width: 29px;
+        float: left;
+        display: block;
+        padding: 4px 0;
+        height: 7px;
+        border-left: 1px solid #cccccc;
+
+        &:first-child{
+            border-color: transparent;
+        }
+        &.active{
+            background: url(../images/pw_border.gif) no-repeat 50% 50%;
+        }
+
+        b{
+            display: block;
+            margin: 0 auto;
+            width: 7px;
+            height: 7px;
+            overflow: hidden;
+            visibility: hidden;
+            background:url(../images/pw_dian.png) no-repeat 50% 50%;
+        }
+    }
+    span{
+        box-sizing: content-box;
+        position: absolute;
+        display: block;
+        left: 0px;
+        top: -1px;
+        height: 32px;
+        border: 1px solid rgba(82, 168, 236, .8);
+        border: 1px solid #00ffff\9;
+        border-radius: 2px;
+        visibility: hidden;
+        -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.75), 0 0 8px rgba(82, 168, 236, 0.6);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+    }
+    .ipt{
+        margin-left: -9999px;
+    }
+}
