@@ -23,6 +23,11 @@
     <script>
     $(function() {
     	var mypw = new AliPw('mypw');
+        setTimeout(testFn, 5000);
+        function testFn (argument) {
+            console.dir(mypw);
+            mypw.clear();
+        }
     })
     </script>
 </body>

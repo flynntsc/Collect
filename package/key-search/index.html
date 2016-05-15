@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My test</title>
+</head>
+<body>
+<style>
+	*{box-sizing:box-sizing;margin: 0;padding: 0;}
+	.box{width:200px;margin:200px auto;}
+	.par{margin-bottom: 20px;}
+	input[type='text']{width:100%;height: 30px;line-height: 30px;padding:0 5px;}
+</style>
+<div class="box">
+	<!-- 过滤现有数组 -->
+	<div class="par j-par">
+		<input type="text" placeholder="过滤现有数组">
+	</div>
+	<div class="par j-par">
+		<input type="text" placeholder="过滤现有数组">
+	</div>
+	<!-- 根据字符串 再返回过滤完毕的数组 -->
+	<div class="par" id="j-par">
+		<input type="text" placeholder="根据字符串 再返回过滤完毕的数组">
+	</div>
+</div>
+<!-- js -->
+<script src="js/jquery.js"></script>
+<script src="js/jquery.keySearch.js"></script>
+<script>
+$(function() {
+	var data1 = ['123','456','789','124','567','000'];
+	var data2 = ['321','654','789','124','567','000'];
+	// 直接一次性获取,js自行过滤
+	$('.j-par').keySearch({
+		intData: data1
+	});
+	// 或者事件动态获取直接数据（不再js过滤）
+	$('#j-par').keySearch({
+		getDataFn: function(event) {
+			console.info('input输入的字符串：'+event);
+			// 对字符串进行处理
+			var arr = ['"'+event+'"'];
+			// 对字符串进行处理
+			return arr;
+		}
+	});
+})
+</script>
+</body>
+</html>
