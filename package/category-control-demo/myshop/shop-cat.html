@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品分类管理</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <link rel="stylesheet" href="../css/club.min.css">
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <strong class="f-fs13">您现在的位置：我的店铺 > 商品分类管理</strong>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel">
+                <button class="btn btn-sm btn-default f-mr20" id="j-isOut">展开/隐藏所有子类</button>
+                <button class="btn btn-sm btn-warning f-mr20" data-toggle="modal" data-target="#j-modalCat">添加分类</button>
+                <button class="btn btn-sm btn-danger f-mr20" id="j-delMul">批量删除</button>
+            </div>
+
+            <table class="table table-bordered table-condensed table-hover" id="j-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="checkbox" name="" id="j-ckb">
+                        </th>
+                        <th>分类名称</th>
+                        <th>排序</th>
+                        <th>创建时间</th>
+                        <th>查看该分类商品</th>
+                        <th>添加子分类</th>
+                        <th>编辑</th>
+                        <th>删除</th>
+                    </tr>
+                </thead>
+                <tbody id="j-tbody" data-maxid="0">
+                    <tr>
+                        <td colspan="8" align="center">正努力加载中。。。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 分类弹框 -->
+    <div class="modal " tabindex="-1" role="dialog" id="j-modalCat" data-id="0">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title j-modalTit">添加子分类</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="g-tc">
+                        <div class="g-tc">
+                            <div class="gtr gtr-1 f-hide" id="j-modalParBd">
+                                <div class="gtd gtd-1 f-lh1 f-tar">所属分类：</div>
+                                <div class="gtd f-lh1 j-modalPar">父级分类</div>
+                            </div>
+                            <div class="gtr gtr-1">
+                                <div class="gtd gtd-1 f-lh1 f-tar">分类名称：</div>
+                                <div class="gtd">
+                                    <input type="text" class="form-control j-modalName">
+                                </div>
+                            </div>
+                            <div class="gtr gtr-1">
+                                <div class="gtd gtd-1 f-lh1 f-tar">排序：</div>
+                                <div class="gtd">
+                                    <input type="text" class="form-control f-w50 j-modalSort" value="1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" id="j-modalCatSave">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 批量删除提醒1 -->
+    <div class="modal " tabindex="-1" role="dialog" id="j-modalDelNote1" data-id="0">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title j-modalTit">删除提醒</h4>
+                </div>
+                <div class="modal-body">请至少选择一个分类！</div>btn
+            </div>
+        </div>
+    </div>
+    <!-- 批量删除提醒2 -->
+    <div class="modal " tabindex="-1" role="dialog" id="j-modalDelNote2" data-id="0">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title j-modalTit">删除提醒</h4>
+                </div>
+                <div class="modal-body">确定删除？</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="j-modalSure">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Template -->
+    <script id="j-temp" type="text/html">
+        <!-- 父类 -->
+        {{each rows}}
+        <tr class="j-par" data-id="{{$value.id}}" data-name="{{$value.type_name}}" data-sort="{{$value.ordering}}" data-parent_id="{{$value.parent_id}}" data-createtime="{{$value.create_time}}">
+            <td>
+                <input type="checkbox" class="checkbox j-ckb" name="" id="">
+            </td>
+            <td class="f-lh1">
+                <span class="glyphicon glyphicon-plus-sign glyphicon-minus-sign j-btnmore"></span>
+                <span class="j-catName">{{$value.type_name}}</span>
+            </td>
+            <td class="f-lh1">
+                <span class="j-catSort">{{$value.ordering}}</span>
+            </td>
+            <td class="f-lh1">{{$value.create_time}}</td>
+            <td>
+                <a class="btn btn-link" href="{{$value.url}}">查看</a>
+            </td>
+            <td>
+                <button class="btn btn-link" data-toggle="modal" data-target="#j-modalCat" data-parid="{{$value.id}}">添加子分类</button>
+            </td>
+            <td>
+                <button class="btn btn-link" data-toggle="modal" data-target="#j-modalCat" data-isedit="true">修改</button>
+            </td>
+            <td>
+                <button class="btn btn-link j-btnDel">删除</button>
+            </td>
+        </tr>
+        <!-- 子类 -->
+        {{if $value.children.length > 0}} {{each $value.children as val i}}
+        <tr class="j-child" data-id="{{val.id}}" data-name="{{val.type_name}}" data-sort="{{val.ordering}}" data-parent_id="{{val.parent_id}}" data-createtime="{{val.create_time}}">
+            <td>
+                <input type="checkbox" class="checkbox j-ckbc" name="" id="">
+            </td>
+            <td class="f-lh1">
+                <span class="glyphicon glyphicon-menu-right"></span>
+                <span class="j-catName">{{val.type_name}}</span>
+            </td>
+            <td class="f-lh1">
+                <span class="glyphicon glyphicon-menu-right"></span>
+                <span class="j-catSort">{{val.ordering}}</span>
+            </td>
+            <td class="f-lh1">{{val.create_time}}</td>
+            <td>
+                <a class="btn btn-link" href="{{val.url}}">查看</a>
+            </td>
+            <td></td>
+            <td>
+                <button class="btn btn-link" data-toggle="modal" data-target="#j-modalCat" data-isedit="true" data-parid="{{val.parent_id}}">修改</button>
+            </td>
+            <td>
+                <button class="btn btn-link j-btnDel">删除</button>
+            </td>
+        </tr>
+        {{/each}} {{/if}} {{/each}}
+    </script>
+
+    <!-- 每个页面对应一个js文件-->
+    <script data-main="../scripts/shop-cat.js" src="../scripts/require.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+{
+    "title": "标题",
+    "maxid": "200",
+    "rows": [{
+        "id": "100",
+        "parent_id": "0",
+        "type_name": "分类A",
+        "ordering": "5",
+        "create_time": "2016-01-01 09:08:02",
+        "url": "/#a",
+        "children": [{
+            "id": "101",
+            "parent_id": "100",
+            "type_name": "子分类CC",
+            "ordering": "3",
+            "create_time": "2016-01-01 09:08:02",
+            "url": "/#a1"
+        }, {
+            "id": "102",
+            "parent_id": "100",
+            "type_name": "子分类DD",
+            "ordering": "2",
+            "create_time": "2016-01-01 09:08:02",
+            "url": "/#a2"
+        }, {
+            "id": "107",
+            "parent_id": "100",
+            "type_name": "子分类DD",
+            "ordering": "1",
+            "create_time": "2016-01-01 09:08:02",
+            "url": "/#a2"
+        }]
+    }, {
+        "id": "103",
+        "parent_id": "0",
+        "type_name": "分类B",
+        "ordering": "2",
+        "create_time": "2016-01-01 09:08:02",
+        "url": "/#a",
+        "children": []
+    }, {
+        "id": "104",
+        "parent_id": "0",
+        "type_name": "分类CC",
+        "ordering": "5",
+        "create_time": "2016-01-01 09:08:02",
+        "url": "/#a",
+        "children": [{
+            "id": "106",
+            "parent_id": "104",
+            "type_name": "子分类CC",
+            "ordering": "2",
+            "create_time": "2016-01-01 09:08:02",
+            "url": "/#a1"
+        }, {
+            "id": "108",
+            "parent_id": "104",
+            "type_name": "子分类CC",
+            "ordering": "1",
+            "create_time": "2016-01-01 09:08:02",
+            "url": "/#a1"
+        }]
+    }]
+}
