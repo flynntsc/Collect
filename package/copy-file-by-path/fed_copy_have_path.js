@@ -1,11 +1,15 @@
 const fs = require('fs')
 const path = require('path')
+const exec = require('child_process').exec
 
 const Fed_path = 'fed_path.txt'
 const Fed_dir = 'fed_copy_files'
 
-fs.readFile(Fed_path, 'utf8', (err, data) => {
+
+exec('rm -fr ' + Fed_dir, function(err, out) {
     if (err) throw err
+    fs.mkdirSync(Fed_dir)
+    const data = fs.readFileSync(Fed_path, 'utf8')
     const arr = data.split('\r\n').sort().filter(v => v).map(v => v.replace(/WebRoot\//g, ''))
     arr.forEach((v, i) => {
         // 判断路径文件是否存在
@@ -36,6 +40,8 @@ fs.readFile(Fed_path, 'utf8', (err, data) => {
         })
     })
 })
+
+
 
 function mkdirSync(url, cb) {
     var arr = url.split("/");

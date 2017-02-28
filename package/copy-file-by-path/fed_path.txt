@@ -1,5 +1,4 @@
+WebRoot/dist/js/app/card/gas_card/gas_card_apply.js
+WebRoot/WEB-INF/view/client/foot.jsp
 WebRoot/WEB-INF/view/usercenter/card/new/gas_card/refund_card.jsp
-WebRoot/WEB-INF/view/usercenter/access/new/access_card/query.jsp
-WebRoot/dist/js/app/access/access_card/app_assign.js
-WebRoot/css/ecshop-new/common.css
-WebRoot/css/user_center.css
+WebRoot/dist/js/page/supplier/index.js
