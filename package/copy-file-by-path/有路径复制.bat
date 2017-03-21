@@ -1,1 +1,0 @@
-node fed_copy_have_path.js

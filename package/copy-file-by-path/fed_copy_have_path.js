@@ -1,13 +1,13 @@
 const fs = require('fs')
 const path = require('path')
+const del = require('del')
 const exec = require('child_process').exec
 
 const Fed_path = 'fed_path.txt'
 const Fed_dir = 'fed_copy_files'
 
 
-exec('rm -fr ' + Fed_dir, function(err, out) {
-    if (err) throw err
+del([Fed_dir]).then(path => {
     fs.mkdirSync(Fed_dir)
     const data = fs.readFileSync(Fed_path, 'utf8')
     const arr = data.split('\r\n').sort().filter(v => v).map(v => v.replace(/WebRoot\//g, ''))

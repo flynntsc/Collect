@@ -1,5 +1,6 @@
 # 批量复制文件
 
+## Explain
 
 ```
 路径存放 => fed_path.txt
@@ -7,14 +8,20 @@
 ```
 
 
-## Usage
+## Start
 
 自有项目，放入到`/WebRoot`目录
 
 ```
-node fed_copy.js
+npm i -D del
+```
+
+## Usage
+
+```
+node fed_copy_no_path.js
 ```
 或者
 
-双击`fed_copy.bat`
+双击`fed_copy_no_path.bat`
 
